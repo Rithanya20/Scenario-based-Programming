@@ -1,0 +1,18 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    int five = (n-4)/5;
+    int one;
+    if((n-five)%2 == 0){
+        one = 2;
+    }
+    else{
+        one = 1;
+    }
+    int two = ((n-(5*five))-one)/2;
+    cout<<five+two+one<<" "<<five<<" "<<two<<" "<<one;
+}
+13
+6 1 3 2
