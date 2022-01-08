@@ -1,0 +1,27 @@
+/**
+Alexander the great, while roaming the stretch of turkey, came across a wise man.
+the wise man asked him to solve a puzzle 
+the puzzle is "given two integers n1 and n2 select two integers a and b such
+as to solve the equation (n1 * a + n2 * b = x) but there is a catch 'x' is the
+smallest positive integer which satisfies the equation. 
+
+n1 = 34818 n2 = 45632
+n1 * a + n2 * b = x
+34818 * 3553 + 45632 * (-2711) = 2
+#include<bits/stdc++.h>
+using namespace std;
+int gcd(int a, int b){
+    if(b==0){
+        return a;
+    }
+    return gcd(b, a%b);
+}
+int main(){
+    int a,b;
+    cin>>a>>b;
+    cout<<gcd(a,b);
+    return 0;
+}
+34818 45632
+2
+**/
