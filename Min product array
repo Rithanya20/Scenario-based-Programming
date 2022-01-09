@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int t;
+    cin>>t;
+    for(int i=0 ; i<t; i++){
+        int n,k;
+        cin>>n>>k;
+        int a[n],b[n];
+        for(int i=0; i<n; i++){
+            cin>>a[i];
+            
+        }
+        for(int i=0; i<n; i++){
+            cin>>b[i];
+        }
+        
+        int sum=0, new_sum[n];
+        for(int i=0; i<n; i++){
+            sum += a[i]*b[i];
+            //cout<<i<<": "<<sum<<" ";
+            new_sum[i] = min(((a[i]+(2*k))*b[i]), ((a[i]-(2*k))*b[i]));
+            //cout<<i<<": "<<new_sum[i]<<" ";
+        }
+        int ans_sum[n];
+        for(int i=0; i<n; i++){
+            ans_sum[i] = sum - (a[i]*b[i]) + new_sum[i];
+           // cout<<i<<": "<<ans_sum<<" ";
+        }
+        int min = ans_sum[0];
+        for(int i=1; i<n; i++){
+            if(min > ans_sum[i]){
+                min = ans_sum[i];
+            }
+        }
+        cout<<min;
+        
+    }
+    
+    return 0;
+}
+______________________________________________________________
+1
+3 5
+1 2 -3
+-2 3 -5
+-31
