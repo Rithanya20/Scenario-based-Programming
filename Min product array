@@ -27,13 +27,15 @@ int main(){
             ans_sum[i] = sum - (a[i]*b[i]) + new_sum[i];
            // cout<<i<<": "<<ans_sum<<" ";
         }
-        int min = ans_sum[0];
+        int mini = ans_sum[0];
         for(int i=1; i<n; i++){
-            if(min > ans_sum[i]){
-                min = ans_sum[i];
+            if(mini > ans_sum[i]){
+                mini = ans_sum[i];
             }
         }
-        cout<<min;
+        mini = min(mini, sum);
+        cout<<mini;
+        
         
     }
     
