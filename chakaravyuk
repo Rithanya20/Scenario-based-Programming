@@ -1,0 +1,80 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    int count=0;
+    int size = n-1;
+    int a[n][n];
+    int no_of_power = (n*n)/11 + 1;
+    int i,j,x = 1;
+    int w=0;
+    int b[20][20];
+    for(w=0; w < n/2; w++){
+        i=w, j=w;
+        for(j = j; j<size+w; j++){
+            a[i][j] = count;
+            if(count%11 == 0){
+                b[x][0] = i;
+                b[x][1] = j;
+                x++;
+            }
+            count++;
+        }
+        for(i=i; i<size+w; i++){
+            a[i][j] = count;
+            if(count%11 == 0){
+                b[x][0] = i;
+                b[x][1] = j;
+                x++;
+            }
+            count++;
+        }
+        for(j=j; j>w; j--){
+            a[i][j] = count;
+            if(count%11 == 0){
+                b[x][0] = i;
+                b[x][1] = j;
+                x++;
+            }
+            count++;
+        }
+        for(i=i; i>w; i--){
+             a[i][j] = count;
+            if(count%11 == 0){
+                b[x][0] = i;
+                b[x][1] = j;
+                x++;
+            }
+            count++;
+        }
+        size = size -2;
+    }
+    if(n%2 !=0){
+            a[w][w]=count;
+        }
+    for(i=0; i<n; i++){
+        for(j=0; j<n; j++){
+            cout<<"\t"<<a[i][j];
+        }
+        cout<<endl;
+    }
+    cout<<"Total no of power points :"<<no_of_power<<endl;
+    for(int k=1; k<x; k++){
+        cout<<b[k][0]<<b[k][1];
+        cout<<endl;
+    }
+    
+    return 0;
+}
+__________________________________________________
+5
+	0	  1   2	  3	  4
+	15	16	17	18	5
+	14	23	24	19	6
+	13	22	21	20	7
+	12	11	10	9	8
+Total no of power points :3
+00
+41
+31
