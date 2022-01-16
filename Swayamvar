@@ -1,0 +1,57 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n; 
+    cin>>n;
+    string f,m;
+    cin>>f;
+    cin>>m;
+   // int c = f.count('r');
+    int cm = count(m.begin(), m.end(), 'm');
+    int cr = count(m.begin(), m.end(), 'r');
+    list <char> l;
+    for(int i=0; f[i]!='\0'; i++){
+        l.push_back(f[i]);
+    }
+    
+   for(int i=0; f[i]!='\0'; i++){
+        if(f[i]=='m'){
+            if(cm == 0){
+                cout<<l.size();
+                break;
+            }
+            else{
+                cm--;
+                l.pop_front();
+                /**cout<<"------m-------"<<i<<" ";
+                for (auto itr = l.begin(); itr != l.end(); itr++)
+                   cout << *itr << " ";
+                cout<<endl;**/
+            }
+        }
+        if(f[i]=='r'){
+            if(cr == 0){
+                cout<<l.size();
+                break;
+            }
+            else{
+                cr--;
+                l.pop_front();
+                /**cout<<"------r-------"<<i<<" ";
+                for (auto itr = l.begin(); itr != l.end(); itr++)
+                   cout << *itr << " ";
+                cout<<endl;**/
+            }
+        }
+        
+    }
+    if(cr == 0 && cm == 0){
+        cout<<0;
+    } 
+    return 0;
+}
+
+4
+rrmm
+mmmr
+3
