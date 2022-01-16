@@ -1,0 +1,124 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+    int n;
+    cin>>n;
+    int a[n], score[n], bit[n];
+    for(int i=0; i<n; i++){
+        cin>>a[i];
+        int maxi=0, mini=9, temp=a[i];
+        while(temp){
+            int r = temp% 10;
+            maxi = max(r, maxi);
+            mini = min(r, mini);
+            temp = temp/10; 
+        }
+        score[i] = (maxi*11) + (mini*7);
+        string num=to_string(score[i]);
+        if(num.size() > 2){
+            bit[i]=score[i]%100;
+        }
+        else{
+            bit[i] = score[i];
+        }
+    }
+    /**for(int i=0; i<n; i++){
+        cout<<score[i]<<" "<<bit[i]<<endl;
+        8
+234 567 321 345 123 110 767 111
+    }**/
+    map<int, int> map;
+    int pair[10]={0};
+    for(int i=0; i<n; i++){
+        if(i%2 == 0){
+            int x = bit[i]/10;
+            for(int j=i+2; j<n; j++){
+                int y = bit[j]/10;
+                if(x == y){
+                    if(map[x]<2)
+                         map[x]++;
+                }
+              
+            }
+        }
+        else{
+            int x = bit[i]/10;
+            for(int j=i+2; j<n; j++){
+                int y = bit[j]/10;
+                if(x == y){
+                    if(map[x]<2)
+                         map[x]++;
+                }
+               
+            }
+        }
+    }
+    int ans=0;
+
+    
+    for(auto i:map){
+        cout<<i.first<<" "<<i.second<<endl;
+        ans += i.second;
+    }
+    cout<<"=>"<<ans;
+    return 0;
+}
+______________________________________________________________TWO SEPARATE MAPS____________________________________________________________________________________
+
+    map<int, int> even;
+    map<int, int> odd;
+    int pair[10]={0};
+    for(int i=0; i<n; i++){
+        if(i%2 == 0){
+            int x = bit[i]/10;
+            for(int j=i+2; j<n; j++){
+                int y = bit[j]/10;
+                if(x == y){
+                    if(even[x]<2)
+                         even[x]++;
+                }
+              
+            }
+        }
+        else{
+            int x = bit[i]/10;
+            for(int j=i+2; j<n; j++){
+                int y = bit[j]/10;
+                if(x == y){
+                    if(odd[x]<2)
+                         odd[x]++;
+                }
+               
+            }
+        }
+    }
+    int ans=0;
+
+    
+    for(auto i:even){
+        cout<<i.first<<" "<<i.second<<endl;
+        ans += i.second;
+    }
+    for(auto i:odd){
+        cout<<i.first<<" "<<i.second<<endl;
+        ans += i.second;
+    }
+    cout<<"=>"<<ans;
+    return 0;
+}
+_______________________________________________________________________________________COMMON OUTPUT_____________________________________________________________
+8
+234 567 321 345 123 110 767 111
+4 1
+1 2
+=>3
+    
+    
+    
+    
+
+    
+    
+    
+    
