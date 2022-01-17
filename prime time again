@@ -1,0 +1,128 @@
+#include <bits/stdc++.h>
+using namespace std;
+int seive[600]; 
+void SieveOfEratosthenes() 
+{ 
+   int n=600;
+     memset(seive,-1,sizeof(seive)); 
+  seive[1]=0;
+  
+    for(int p=2;p*p<=n;p++) 
+    { 
+        if(seive[p]==-1) 
+        { 
+            for(int i=p*p;i<=n;i+=p) 
+               seive[i]=0; 
+        } 
+    } 
+} 
+  
+int main() {
+ios_base::sync_with_stdio(0);
+cin.tie(0);
+cout.tie(0);
+long int n,k;
+cin>>n>>k;
+SieveOfEratosthenes();
+long int i=0,j,l,m,o,p=n/k;
+
+int a[100];
+long int n1=n,k1=k,ans=0,flag=0;
+n1=1;
+while(n1<n)
+{
+a[i]=n1;
+n1+=(p);
+
+i++;
+//cout<<a[i-1]<<n1<<"\n";
+}
+m=i;
+
+for(i=0;i<p;i++)
+{
+ flag=0;
+ for(j=0;j<m;j++)
+ {
+  if(seive[a[j]]!=-1)
+  {
+   
+   flag=1;
+   
+  }
+  a[j]++;
+  
+ }
+ if(flag==0)
+ ans++;
+}
+cout<<ans;
+}
+24 2
+3
+_______________________________________________________________________
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+    int n,p;
+    cin>>n>>p;
+    int r = n/p;
+    //cout<<r;
+    int x = r;
+    int a[r][p];
+    int sum =0;
+    bool flag = 1;
+    for(int i=0; i<r-1; i++){
+        for(int j=1; j<=p; j++){
+            a[i][j] = (x*j) - i;
+            cout<<a[i][j]<<" ";
+            int f = a[i][j];
+            //cout<<f<<" ";
+            if(f <= 1){
+                flag = 0;
+                break;
+               
+            }
+            else if(f == 2 || f== 3 || f==5 || f == 7){
+                flag = 1;
+            }
+            else{
+               
+                    if(f%2 == 0 || f%3 ==0 || f%5 == 0 || f%7 == 0 ){
+                   
+                        flag = 0;
+                        break;
+                       
+                    }
+                    else{
+                        flag = 1;
+                    }
+                
+                
+            }
+            //flag = flag && flag; 
+            
+        }
+        cout<<flag;
+        cout<<endl;
+        if(flag == 1){
+            sum += 1;
+        }
+    }
+    cout<<sum;
+    return 0;
+}
+24 2
+12 0
+11 23 1
+10 0
+9 0
+8 0
+7 19 1
+6 0
+5 17 1
+4 0
+3 15 0
+2 14 0
+3
