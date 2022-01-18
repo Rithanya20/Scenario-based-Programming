@@ -1,0 +1,140 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    char m[n][n];
+    for(int i=0; i<n;i++){
+        for(int j=0; j<n; j++){
+            cin>>m[i][j];
+        }
+    }
+    
+    
+    for(int i=0; i<n; i++){
+        for(int j=0; j<n; j++){
+            if(m[i][j]=='D'){
+                break;
+            }
+            
+            if(m[i][j]=='R'){
+                
+               string h="";
+               for(int x=i-1; x<= i+1; x++ ){
+                   if(x>=0 && x<n){
+                   for(int y = j-1; y<= j+1; y++){
+                   
+                      if(y>=0 && y<n){
+                       if(m[x][y] == 'L'){
+                           h += 'L';
+                       }
+                       else if(m[x][y] == 'S'){
+                           h += 'S';
+                       }
+                       else if(m[x][y] == 'T'){
+                           h += 'T';
+                       }
+                       else if(m[x][y] == 'W'){
+                           h += 'W';
+                       }
+                 
+                      }
+                      
+                   }
+               }
+               }
+               if(h[0]!='\0'){
+               sort(h.begin(), h.end());
+               cout<<h;
+               }
+               else{
+                   cout<<"No Hurdles";
+               }
+               cout<<endl;
+               m[i][j] = 'O';
+               break;
+            }
+        }
+    
+    }
+    
+    for(int i=n-1; i>=0; i--){
+        for(int j=n-1; j>=0; j--){
+            
+            if(m[i][j] == 'D'){
+                cout<<"DESTINATION";
+                break;
+            }
+            if(m[i][j]=='R'){
+               
+               string h = "";
+               for(int x=i+1; x>= i-1; x-- ){
+                   if(x>=0 && x<n){
+                   for(int y = j+1; y>= j-1; y--){
+                      
+                      if(y>=0 && y<n){
+                       if(m[x][y] == 'L'){
+                           h += 'L';
+                       }
+                       else if(m[x][y] == 'S'){
+                           h += 'S';
+                       }
+                       else if(m[x][y] == 'T'){
+                           h += 'T';
+                       }
+                       else if(m[x][y] == 'W'){
+                           h += 'W';
+                          
+                       }
+               
+                      }
+                      
+                   }
+               }
+               }
+               if(h[0]!='\0'){
+               sort(h.begin(), h.end());
+               cout<<h;
+               }
+               else{
+                   cout<<"No Hurdles";
+               }
+               cout<<endl;
+               m[i][j] = 'O';
+               break;
+            }
+        }
+        
+    }
+  
+    return 0;
+}
+5
+
+A S L W M
+
+R S L D T
+
+M R T R M
+
+T L R M S
+
+S L S W T
+SS
+LLSTT
+LLSTW
+LSTT
+DESTINATION
+
+4
+A S L D
+T R W R
+R M S R
+W R R M
+LSSTW
+TW
+SW
+S
+SW
+LSW
+DESTINATION
