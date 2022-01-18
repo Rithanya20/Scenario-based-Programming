@@ -1,0 +1,57 @@
+#include<bits/stdc++.h>
+using namespace std;
+int power(long x){
+    long j=1;
+    for(int i=0; i<x; i++){
+        j = j*2;
+    }
+    return j;
+}
+int length(long p1){
+    long ct=0;
+    while(p1){
+        ct++;
+        p1 = p1/10;
+    }
+    return ct;
+}
+int reduce(long p1, long c1){
+    long k, a[1000], h=0, sum=0;
+    while(p1){
+        k = p1%10;
+        a[h] = k;
+        h++;
+        p1 /= 10; 
+    }
+    for(int i=h-1; i>=0 ; i--){
+        sum = sum*10 + a[i];
+    }
+    return sum;
+}
+int main(){
+    long n,x,p,c,r[70],sum=0,f=0;
+    cin>>n;
+    for(int i=0; i<n; i++){
+       cin>>x;
+       p = power(x);
+       c = length(p);
+       if(c > 2){
+           r[f++] = reduce(p,c);
+       }
+       else{
+           r[f++] = p;
+       }
+    }
+    for(int i=0; i<n; i++){
+        sum += r[i];
+    }
+    cout<<sum%100;
+    
+    return 0;
+}
+4
+8 6 7 4
+64
+3
+1 2 3
+14
