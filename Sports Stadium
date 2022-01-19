@@ -1,0 +1,92 @@
+/**100 50 5 8
+3 7 10 10 20 10 20 20
+100 50 5 6
+3 10 30 5 30 22
+**/
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int seats, fans, wet_fans, b;
+    cin>>seats>>fans>>wet_fans>>b;
+    
+    int dry_fans = fans - wet_fans;
+    
+    int bl[b], wet_min=0, dry_min=0;
+    for(int i=0; i<b; i++){
+        cin>>bl[i];
+        if(i%2 == 0){
+            dry_min += bl[i];
+        }
+        else{
+            wet_min += bl[i];
+        }
+    }
+    int temp = dry_min;
+    
+    int dry_sum = 0, wet_sum=0, starting, stopping;
+    
+    for(int i=0; i<b ; i=i+2){
+        int start = i, jcheck = i;
+     //   if((temp-i)>=dry_fans){ //..
+        for(int j=i; j<b; j= j+2){
+            dry_sum += bl[j];
+            
+            if(dry_sum >= dry_fans){
+                if(dry_min >= dry_sum){
+                    int stop = j;
+                    
+                  // cout<<"**"<<start<<"**"<<"**"<<stop<<endl;
+                    for(int x = start+1; x<stop; x=x+2){
+                        wet_sum += bl[x];
+                       // cout<<wet_sum<<" ";
+                    }
+                    //cout<<wet_sum<<"~"<<endl;
+                    dry_min = dry_sum;
+                    if(wet_min >= wet_sum){
+                      starting = i;
+                      stopping = stop;
+                      wet_min = wet_sum;
+                      wet_sum=0;
+                    }
+                     dry_sum = 0;
+                    break;
+                }
+            }
+           // jcheck = jcheck+2;
+        }
+  //  } //..
+        
+    }
+    //cout<<endl;
+    //cout<<dry_min<<endl<<wet_min<<endl;
+    if(wet_min < wet_fans){
+        
+    for(int i= starting-1; i>0; i = i-2){
+        wet_min += bl[i];
+        if(wet_min >= wet_fans){
+            break;
+        }
+    }
+    for(int i = stopping+1; i<=b; i=i+2){
+        wet_min += bl[i];
+        if(wet_min >= wet_fans){
+            break;
+        }
+    }
+    }
+  // cout<<"***"<<starting<<" "<<stopping<<endl;
+   
+  //  cout<<wet_min<<endl;
+    int wet_avail = wet_min - wet_fans - 1;
+    if(wet_avail >= -1 && wet_avail <15){
+        cout<<dry_fans+wet_fans+wet_avail;
+    }
+    else{
+        cout<<0;
+    }
+    
+    return 0;
+}
+100 50 5 6
+3 10 30 5 30 22
+49
